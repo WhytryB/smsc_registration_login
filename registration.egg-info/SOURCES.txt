@@ -1,0 +1,14 @@
+MANIFEST.in
+README.rst
+setup.py
+registration/__init__.py
+registration/admin.py
+registration/apps.py
+registration/forms.py
+registration/models.py
+registration/smsc_api.py
+registration/views.py
+registration.egg-info/PKG-INFO
+registration.egg-info/SOURCES.txt
+registration.egg-info/dependency_links.txt
+registration.egg-info/top_level.txt
