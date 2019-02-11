@@ -79,19 +79,20 @@ def registration(request):
             if mes == sms_form.cleaned_data['sms_mes']:# ПРоверка совпадает ли код пользователя и код отправленный ему
                 # создание и аутентификаци персоны по введёным данным пользователя
                 last_id = User.objects.latest('id').id   #  можно заменить на ваши модели
-                last_i = Person.objects.latest('id').id  #  можно заменить на ваши модели
+                # last_i = Person.objects.latest('id').id  #  можно заменить на ваши модели
                 password = "empty_password"
+                #  сохранение новго пользователя и дальнейший его вход
                 User.objects.create_user (**user_form.cleaned_data, id=int(last_id)+1, password=password)
-                create_person = Person(users_id = last_id+1, id = last_i+1)
-                print(create_person)
-                create_person.save()  #  сохранение новго пользователя и дальнейший его вход
+                # create_person = Person(users_id = last_id+1, id = last_i+1)
+                # print(create_person)
+                # create_person.save()
                 user = authenticate(
                     username=user_form.cleaned_data[ 'username' ],
                     password=password
                 )
                 login(request, user)
                 messages.success (request, "Вы успешно зарегестрированы!")
-                return redirect('edit_person', id=last_i+1)
+                # return redirect('edit_person', id=last_i+1)
             else:
                 messages.error(request, "Вы ввели неверный код!")
                 disabled2 = ""
@@ -176,7 +177,7 @@ def MyLoginView(request):
                     messages.success (request, "Вы успешно залогинили!")
                     login(request, user)
                     current_user = request.user.personshop.id
-                    return redirect('person', id=current_user)
+                    # return redirect('person', id=current_user)
                 else:
                     messages.error(request, "Вы ввели неверный код!")
                 disabled2 = ""
@@ -187,6 +188,7 @@ def MyLoginView(request):
                     "id": id,
                     "disabled": disabled,
                     "disabled2":disabled2})
+
 
 
 
